@@ -1,14 +1,40 @@
 <main class="container py-3">
-  <h1><%= @article.title %></h1>
-  <p><%= @article.body %></p>
-  <div>
-    <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-primary btn-sm" %>
-    <%= link_to 'All Articles', articles_path, class: "btn btn-secondary btn-sm" %>
-    <%= link_to "Destroy", article_path(@article), data: {
+  <section>
+    <h1><%= @article.title %></h1>
+    <p><%= @article.body %></p>
+    <div>
+      <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-primary btn-sm" %>
+      <%= link_to 'All Articles', articles_path, class: "btn btn-secondary btn-sm" %>
+      <%= link_to "Destroy", article_path(@article), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   },
                   class: "btn btn-danger btn-sm" 
     %>
-  </div>
+    </div>
+  </section>
+  <hr>
+  <section>
+    <h2>Comments</h2>
+    <%= render @article.comments %>
+  </section>
+  <hr>
+  <section class="mt-5">
+    <h2 class="lead fw-semibold">Add a comment</h2>
+    <div>
+      <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+        <p>
+          <%= form.label :commenter, class: "form-label" %><br>
+          <%= form.text_field :commenter, class: "form-control" %>
+        </p>
+        <p>
+          <%= form.label :body, class: "form-label" %><br>
+          <%= form.text_area :body, class: "form-control" %>
+        </p>
+        <p>
+          <%= form.submit class: "btn btn-primary btn-sm" %>
+        </p>
+      <% end %>
+    </div>
+  </section>
 </main>
