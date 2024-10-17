@@ -1,3 +1,14 @@
-<main class="container">
+<main class="container py-3">
   <h1>Hello, Rails!</h1>
+  <section>
+    <ul class="list-group">
+      <% @articles.each do |article| %>
+        <li class="list-group-item">
+          <a href="/articles/<%= article.id %>">
+            <%= article.title %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </section>
 </main>
