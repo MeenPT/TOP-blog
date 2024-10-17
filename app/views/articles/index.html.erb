@@ -3,8 +3,11 @@
   <section>
     <ul class="list-group mt-3">
       <% @articles.each do |article| %>
-        <li class="list-group-item">
+        <li class="list-group-item d-flex">
           <%= link_to article.title, article %>
+          <div class="ms-auto">
+            <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-sm btn-outline-secondary' %>
+          </div>
         </li>
       <% end %>
     </ul>
